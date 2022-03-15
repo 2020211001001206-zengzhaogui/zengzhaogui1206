@@ -1,0 +1,9 @@
+<component name="libraryTable">
+  <library name="sqljdbc42">
+    <CLASSES />
+    <JAVADOC />
+    <SOURCES>
+      <root url="file://$PROJECT_DIR$/src/main/webapp/WEB-INF/lib" />
+    </SOURCES>
+  </library>
+</component>
