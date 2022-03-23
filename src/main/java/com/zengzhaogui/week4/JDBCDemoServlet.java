@@ -11,25 +11,29 @@ import java.sql.SQLException;
 import java.sql.Statement;
 
 public class JDBCDemoServlet extends HttpServlet {
-    Connection con=null;
+    Connection dbConn=null;
     @Override
     public void init() throws ServletException {
         super.init();
-//        String driver="com.microsoft.sqlserver.jdbc.SQLServerDriver";
-//        String url="jdbc:sqlserver://localhost:1433;DatabaseName=userdbtest;encrypt=false";
-//        String username="ZZG";
-//        String password="ZZG123456789";
         String driver=getServletConfig().getServletContext().getInitParameter("driver");
         String url=getServletConfig().getServletContext().getInitParameter("url");
         String username=getServletConfig().getServletContext().getInitParameter("username");
         String password=getServletConfig().getServletContext().getInitParameter("password");
-        try {
+        try{
             Class.forName(driver);
-            con= DriverManager.getConnection(url,username,password);
-        } catch (SQLException e) {
+            System.out.println("加载驱动成功！");
+        }
+        catch(Exception e){
             e.printStackTrace();
-        } catch (ClassNotFoundException e) {
+            System.out.println("加载驱动失败！");
+        }
+        try{
+            dbConn=DriverManager.getConnection(url,username,password);
+            System.out.println("连接数据库成功！");
+        }
+        catch(Exception e){
             e.printStackTrace();
+            System.out.print("SQL Server连接失败！");
         }
     }
 
@@ -49,13 +53,21 @@ public class JDBCDemoServlet extends HttpServlet {
         //输入
         int id=1;
         try{
-            Statement stmt=con.createStatement();
-            String s="insert into Usertable(id,username,password,email,gender,birthday) values ( '"+id+","+username+"','"+
+            Statement stmt=dbConn.createStatement();
+            ResultSet rs= stmt.executeQuery("select * from Usertable");
+            while(rs.next()){
+                id++;
+            }
+        }catch(Exception e){
+            System.out.println("geigei");
+        }
+        try{
+            Statement stmt=dbConn.createStatement();
+            String s="insert into Usertable(id,username,password,email,gender,birthdate) values ( "+id+",'"+username+"','"+
                     password+"','"+email+"','"+male+"','"+birthday+"');";
             int count=stmt.executeUpdate(s);
             if(count==1){
                 System.out.println("successful");
-                id++;
             }else{
                 System.out.println("yinyinyin");
             }
@@ -64,8 +76,8 @@ public class JDBCDemoServlet extends HttpServlet {
         }
        //输出
        try{
-           Statement stmt= con.createStatement();
-           ResultSet rs= stmt.executeQuery("select id,username,password,email,gender,birthday from userdbtest");
+           Statement stmt= dbConn.createStatement();
+           ResultSet rs= stmt.executeQuery("select id,username,password,email,gender,birthdate from Usertable");
            while(rs.next()){
                PrintWriter out=response.getWriter();
                out.print(" "+rs.getString("id"));
@@ -73,8 +85,8 @@ public class JDBCDemoServlet extends HttpServlet {
                out.print(" "+rs.getString("password"));
                out.print(" "+rs.getString("email"));
                out.print(" "+rs.getString("gender"));
-               out.print(" "+rs.getString("birthday"));
-
+               out.print(" "+rs.getString("birthdate"));
+               out.println();
            }
        }catch (Exception e){
            System.out.println("出错了");
@@ -86,7 +98,7 @@ public class JDBCDemoServlet extends HttpServlet {
     public void destroy() {
         super.destroy();
         try {
-            con.close();
+            dbConn.close();
         } catch (SQLException e) {
             e.printStackTrace();
         }
