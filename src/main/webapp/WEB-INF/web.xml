@@ -3,12 +3,74 @@
          xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
          xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/javaee http://xmlns.jcp.org/xml/ns/javaee/web-app_4_0.xsd"
          version="4.0">
+    <!--week2.HelloWorld-->
     <servlet>
-        <servlet-name>1206zengzhaogui</servlet-name>
+        <servlet-name>HelloWorld</servlet-name>
         <servlet-class>com.zengzhaogui.week2.HelloWorld</servlet-class>
     </servlet>
     <servlet-mapping>
-        <servlet-name>1206zengzhaogui</servlet-name>
+        <servlet-name>HelloWorld</servlet-name>
         <url-pattern>/hello</url-pattern>
     </servlet-mapping>
+
+    <!--week2.HelloWorld-->
+    <servlet>
+        <servlet-name>RegisterServlet</servlet-name>
+        <servlet-class>com.zengzhaogui.week3.RegisterServlet</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>RegisterServlet</servlet-name>
+        <url-pattern>/register</url-pattern>
+    </servlet-mapping>
+
+    <!--week4.ConfigDemoServlet-->
+    <servlet>
+        <servlet-name>ConfigDemoServlet</servlet-name>
+        <servlet-class>com.zengzhaogui.week4.ConfigDemoServlet</servlet-class>
+        <!--        <init-param>-->
+        <!--            <param-name>name</param-name>-->
+        <!--            <param-value>zengzhaogui</param-value>-->
+        <!--        </init-param>-->
+        <!--        <init-param>-->
+        <!--            <param-name>Id</param-name>-->
+        <!--            <param-value>2020211001001206</param-value>-->
+        <!--        </init-param>-->
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>ConfigDemoServlet</servlet-name>
+        <url-pattern>/config</url-pattern>
+    </servlet-mapping>
+
+    <!--week4.JDBCDemoServlet-->
+    <servlet>
+        <servlet-name>JDBCDemoServlet</servlet-name>
+        <servlet-class>com.zengzhaogui.week4.JDBCDemoServlet</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>JDBCDemoServlet</servlet-name>
+        <url-pattern>/jdbc</url-pattern>
+    </servlet-mapping>
+
+    <!--jdbc-->
+    <context-param>
+        <param-name>driver</param-name>
+        <param-value>com.microsoft.sqlserver.jdbc.SQLServerDriver</param-value>
+    </context-param>
+    <context-param>
+        <param-name>url</param-name>
+        <param-value>jdbc:sqlserver://localhost:1433;DatabaseName=userdbtest;</param-value>
+    </context-param>
+    <context-param>
+        <param-name>username</param-name>
+        <param-value>ZZG</param-value>
+    </context-param>
+    <context-param>
+        <param-name>password</param-name>
+        <param-value>ZZG123456789</param-value>
+    </context-param>
+
+    <!--主页文件-->
+    <welcome-file-list>
+        <welcome-file>register.jsp</welcome-file>
+    </welcome-file-list>
 </web-app>
