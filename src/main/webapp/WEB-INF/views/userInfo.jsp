@@ -1,38 +1,12 @@
-<%@ page import="java.io.PrintWriter" %>
-<%@ page import="java.sql.ResultSet" %>
-<%@ page import="com.zengzhaogui.model.User" %><%--
-  Created by IntelliJ IDEA.
-  User: ZZG
-  Date: 2022/3/30
-  Time: 21:28
-  To change this template use File | Settings | File Templates.
---%>
-<%@ page contentType="text/html;charset=UTF-8" language="java" %>
-<html>
-<head>
-    <title>Title</title>
-</head>
-<body>
+<%@ page import="com.zengzhaogui.model.User" %>
+<%@include file="header.jsp"%>
 <%
-    User user=(User) request.getAttribute("user");
+    User user1=(User) session.getAttribute("user");
 %>
-<table border="1">
-    <tr>
-        <td>id</td>
-        <td>username</td>
-        <td>password</td>
-        <td>email</td>
-        <td>gender</td>
-        <td>birthdate</td>
-    </tr>
-        <tr>
-            <td><%=user.getId()%></td>
-            <td><%=user.getUsername()%></td>
-            <td><%=user.getPassword()%></td>
-            <td><%=user.getEmail()%></td>
-            <td><%=user.getGender()%></td>
-            <td><%=user.getBirthdate()%></td>
-        </tr>
-</table>
-</body>
-</html>
+username:<%=user1.getUsername()%><br>
+password:<%=user1.getPassword()%><br>
+email:<%=user1.getEmail()%><br>
+male:<%=user1.getGender()%><br>
+birthday:<%=user1.getBirthdate()%><br>
+<a href="update">update</a>
+<%@include file="footer.jsp"%>

@@ -52,18 +52,22 @@ public class UserDao implements IUserDao{
         String email=user.getEmail();
         String gender=user.getGender();
         Date birthdate=user.getBirthdate();
-        String[][] name ={{"username"},{"password"},{"email"},{"gender"}};
-        String data[]={username,password,email,gender};
-        int count=0;
-        try {
-            for(int i=0;i<data.length;i++){
-                String sql="update Usertable set "+name[i]+"="+data[i]+"where id ="+id;
-                Statement stmt=con.createStatement();
-                count=stmt.executeUpdate(sql);
-            }
-        }catch (Exception e){
-            System.out.println("oh No");
+        String names[] ={"username","password","email","gender","birthdate"};
+        String informations[]={username,password,email,gender, String.valueOf(birthdate)};
+        for (int i = 0; i < informations.length; i++) {
+            System.out.println(informations[i]);
         }
+        int count=0;
+        for(int i=0;i<informations.length;i++){
+               try{
+                   String sql="update Usertable set "+names[i]+"='"+informations[i]+"' where id="+id;
+                   System.out.println(sql);
+                   Statement stmt=con.createStatement();
+                   count=stmt.executeUpdate(sql);
+               }catch (Exception e){
+                   System.out.println("There are some problems");
+               }
+           }
         return count;
     }
 
