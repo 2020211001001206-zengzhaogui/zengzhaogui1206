@@ -10,10 +10,11 @@ import java.sql.DriverManager;
 @WebListener
 public class JDBCServletContextListener implements ServletContextListener {
     Connection dbConn=null;
+
     @Override
     public void contextInitialized(ServletContextEvent sce) {
-        ServletContextListener.super.contextInitialized(sce);
-        ServletContext context= sce.getServletContext();
+        //ServletContextListener.super.contextInitialized(sce);
+        ServletContext context=sce.getServletContext();
         String driver=context.getInitParameter("driver");
         String url=context.getInitParameter("url");
         String username=context.getInitParameter("username");
@@ -27,9 +28,8 @@ public class JDBCServletContextListener implements ServletContextListener {
             System.out.println("加载驱动失败！");
         }
         try{
-            Connection dbConn= DriverManager.getConnection(url,username,password);
+            dbConn= DriverManager.getConnection(url,username,password);
             System.out.println("连接数据库成功！");
-            context.setAttribute("dbConn",dbConn);
         }
         catch(Exception e){
             e.printStackTrace();
@@ -37,10 +37,14 @@ public class JDBCServletContextListener implements ServletContextListener {
         }
         context.setAttribute("dbConn",dbConn);
     }
-
     @Override
     public void contextDestroyed(ServletContextEvent sce) {
-        ServletContextListener.super.contextDestroyed(sce);
-        sce.getServletContext().removeAttribute("dbConn");
+        //ServletContextListener.super.contextDestroyed(sce);
+        try {
+            sce.getServletContext().removeAttribute("dbConn");
+        }catch (Exception e){
+            System.out.println("oh No");
+        }
     }
+
 }

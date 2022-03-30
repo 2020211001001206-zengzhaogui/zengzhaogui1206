@@ -9,12 +9,6 @@
     </properties>
     <root id="archive" name="demo-1.0-SNAPSHOT.war">
       <element id="artifact" artifact-name="demo:war exploded" />
-      <element id="directory" name="WEB-INF">
-        <element id="directory" name="lib">
-          <element id="file-copy" path="$USER_HOME$/Desktop/jdbc/sqljdbc42.jar" />
-          <element id="file-copy" path="$USER_HOME$/Desktop/jdbc/jaxb-api-2.1.jar" />
-        </element>
-      </element>
     </root>
   </artifact>
 </component>

@@ -71,6 +71,6 @@
 
     <!--主页文件-->
     <welcome-file-list>
-        <welcome-file>home</welcome-file>
+        <welcome-file>login.jsp</welcome-file>
     </welcome-file-list>
 </web-app>
