@@ -15,26 +15,27 @@ public class JDBCDemoServlet extends HttpServlet {
     @Override
     public void init() throws ServletException {
         super.init();
-        String driver=getServletConfig().getServletContext().getInitParameter("driver");
-        String url=getServletConfig().getServletContext().getInitParameter("url");
-        String username=getServletConfig().getServletContext().getInitParameter("username");
-        String password=getServletConfig().getServletContext().getInitParameter("password");
-        try{
-            Class.forName(driver);
-            System.out.println("加载驱动成功！");
-        }
-        catch(Exception e){
-            e.printStackTrace();
-            System.out.println("加载驱动失败！");
-        }
-        try{
-            dbConn=DriverManager.getConnection(url,username,password);
-            System.out.println("连接数据库成功！");
-        }
-        catch(Exception e){
-            e.printStackTrace();
-            System.out.print("SQL Server连接失败！");
-        }
+//        String driver=getServletConfig().getServletContext().getInitParameter("driver");
+//        String url=getServletConfig().getServletContext().getInitParameter("url");
+//        String username=getServletConfig().getServletContext().getInitParameter("username");
+//        String password=getServletConfig().getServletContext().getInitParameter("password");
+//        try{
+//            Class.forName(driver);
+//            System.out.println("加载驱动成功！");
+//        }
+//        catch(Exception e){
+//            e.printStackTrace();
+//            System.out.println("加载驱动失败！");
+//        }
+//        try{
+//            dbConn=DriverManager.getConnection(url,username,password);
+//            System.out.println("连接数据库成功！");
+//        }
+//        catch(Exception e){
+//            e.printStackTrace();
+//            System.out.print("SQL Server连接失败！");
+//        }
+        dbConn=(Connection) getServletContext().getAttribute("dbConn");
     }
 
     @Override
@@ -78,16 +79,18 @@ public class JDBCDemoServlet extends HttpServlet {
        try{
            Statement stmt= dbConn.createStatement();
            ResultSet rs= stmt.executeQuery("select id,username,password,email,gender,birthdate from Usertable");
-           while(rs.next()){
-               PrintWriter out=response.getWriter();
-               out.print(" "+rs.getString("id"));
-               out.print(" "+rs.getString("username"));
-               out.print(" "+rs.getString("password"));
-               out.print(" "+rs.getString("email"));
-               out.print(" "+rs.getString("gender"));
-               out.print(" "+rs.getString("birthdate"));
-               out.println();
-           }
+           request.setAttribute("rsname",rs);
+//           while(rs.next()){
+//               PrintWriter out=response.getWriter();
+//               out.print(" "+rs.getString("id"));
+//               out.print(" "+rs.getString("username"));
+//               out.print(" "+rs.getString("password"));
+//               out.print(" "+rs.getString("email"));
+//               out.print(" "+rs.getString("gender"));
+//               out.print(" "+rs.getString("birthdate"));
+//               out.println();
+//           }
+           request.getRequestDispatcher("userInfo.jsp").forward(request,response);
        }catch (Exception e){
            System.out.println("出错了");
        }

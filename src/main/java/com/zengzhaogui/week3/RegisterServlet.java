@@ -20,6 +20,7 @@ public class RegisterServlet extends HttpServlet {
         String male=request.getParameter("male");
         String birthday=request.getParameter("birthday");
 
+
         PrintWriter writer=response.getWriter();
         writer.println("<br>username:"+username);
         writer.println("<br>password:"+password);

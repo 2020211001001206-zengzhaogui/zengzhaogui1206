@@ -13,27 +13,27 @@ public class LoginServlet extends HttpServlet {
     @Override
     public void init() throws ServletException {
         super.init();
-        String driver=getServletConfig().getServletContext().getInitParameter("driver");
-        String url=getServletConfig().getServletContext().getInitParameter("url");
-        String username=getServletConfig().getServletContext().getInitParameter("username");
-        String password=getServletConfig().getServletContext().getInitParameter("password");
-        try{
-            Class.forName(driver);
-            System.out.println("加载驱动成功！");
-        }
-        catch(Exception e){
-            e.printStackTrace();
-            System.out.println("加载驱动失败！");
-        }
-        try{
-            dbConn=DriverManager.getConnection(url,username,password);
-            System.out.println("连接数据库成功！");
-        }
-        catch(Exception e){
-            e.printStackTrace();
-            System.out.print("SQL Server连接失败！");
-        }
-
+//        String driver=getServletConfig().getServletContext().getInitParameter("driver");
+//        String url=getServletConfig().getServletContext().getInitParameter("url");
+//        String username=getServletConfig().getServletContext().getInitParameter("username");
+//        String password=getServletConfig().getServletContext().getInitParameter("password");
+//        try{
+//            Class.forName(driver);
+//            System.out.println("加载驱动成功！");
+//        }
+//        catch(Exception e){
+//            e.printStackTrace();
+//            System.out.println("加载驱动失败！");
+//        }
+//        try{
+//            dbConn=DriverManager.getConnection(url,username,password);
+//            System.out.println("连接数据库成功！");
+//        }
+//        catch(Exception e){
+//            e.printStackTrace();
+//            System.out.print("SQL Server连接失败！");
+//        }
+        dbConn=(Connection)getServletContext().getAttribute("dbConn");
     }
 
     @Override
@@ -56,10 +56,12 @@ public class LoginServlet extends HttpServlet {
             if(upwd.equals(password.trim())){
                 out.println("Login Success");
                 out.println("Welcome "+uname);
+            }else {
+                out.println("Password Error");
             }
 
         }catch (Exception e){
-            out.println("oh no");
+            out.println("The users does not exist");
         }
 
     }
