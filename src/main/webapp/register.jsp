@@ -13,7 +13,8 @@ This is my register JSPpage.<br>
 <input type="password" placeholder="password" name="password" class="messagedata"><br/>
 <input type="email" placeholder="Email" name="email" class="messagedata"><br/>
 
-<div class="word">Gender<input type="radio" name="male" checked>Male<input type="radio" name="male">Female</div>
+<div class="word">Gender<input type="radio" name="male" value="male " checked>Male
+    <input type="radio" name="male" value="female">Female</div>
 <input type="text" placeholder="Date of borth(yyyy-mm-dd)" name="birthday" class="messagedata"><br/>
 <input type="submit" value="Register" id="bt">
 </form>
