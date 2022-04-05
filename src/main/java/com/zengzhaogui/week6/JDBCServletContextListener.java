@@ -12,7 +12,7 @@ public class JDBCServletContextListener implements ServletContextListener {
     Connection dbConn=null;
     @Override
     public void contextInitialized(ServletContextEvent sce) {
-        //ServletContextListener.super.contextInitialized(sce);
+        ServletContextListener.super.contextInitialized(sce);
         ServletContext context= sce.getServletContext();
         String driver=context.getInitParameter("driver");
         String url=context.getInitParameter("url");
@@ -40,7 +40,7 @@ public class JDBCServletContextListener implements ServletContextListener {
 
     @Override
     public void contextDestroyed(ServletContextEvent sce) {
-        //ServletContextListener.super.contextDestroyed(sce);
+        ServletContextListener.super.contextDestroyed(sce);
         sce.getServletContext().removeAttribute("dbConn");
     }
 }
