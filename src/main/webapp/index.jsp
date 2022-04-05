@@ -6,8 +6,8 @@
 <a href="register.jsp">Register JDBC-week4</a> <br>
 <a href="index.jsp">include-week5</a> <br>
 <a href="login.jsp">login-week5</a> <br> -->
-  <form method="get">
-    <select name="text" action="search">
+  <form method="get"  action="search">
+    <select name="text">
       <option value="baidu">baidu</option>
       <option value="qq">QQ</option>
       <option value="taobao">taobao</option>
