@@ -9,6 +9,7 @@ import java.sql.DriverManager;
 
 @WebListener
 public class JDBCServletContextListener implements ServletContextListener {
+    Connection dbConn=null;
     @Override
     public void contextInitialized(ServletContextEvent sce) {
         //ServletContextListener.super.contextInitialized(sce);
@@ -34,7 +35,7 @@ public class JDBCServletContextListener implements ServletContextListener {
             e.printStackTrace();
             System.out.print("SQL Server连接失败！");
         }
-
+        context.setAttribute("dbConn",dbConn);
     }
 
     @Override
