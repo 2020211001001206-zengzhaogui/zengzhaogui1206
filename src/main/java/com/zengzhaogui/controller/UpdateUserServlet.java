@@ -35,9 +35,8 @@ public class UpdateUserServlet extends HttpServlet {
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         HttpSession session=request.getSession();
         User user=(User) session.getAttribute("user");
-        int id=user.getId();
+        //int id=user.getId();
         String username=request.getParameter("username");
-        System.out.println("username:"+username);
         String password=request.getParameter("password");
         String email=request.getParameter("email");
         String gender=request.getParameter("male");
@@ -58,6 +57,8 @@ public class UpdateUserServlet extends HttpServlet {
         if (birthdate!=""){
             try {
                 Date birth = new SimpleDateFormat("yyyy-MM-dd").parse(birthdate);
+//                System.out.println("birthdate:"+birthdate);
+//                System.out.println("birth:"+birth);
                 user.setBirthdate(birth);
             } catch (ParseException e) {
                 e.printStackTrace();
