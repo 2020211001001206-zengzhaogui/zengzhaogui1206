@@ -1,4 +1,5 @@
-<%--
+<%@ page import="com.zengzhaogui.model.User" %>
+<%@ page import="java.util.Objects" %><%--
   Created by IntelliJ IDEA.
   User: ZZG
   Date: 2022/4/17
@@ -7,18 +8,20 @@
 --%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 Update your informations<br>
+<%
+    User user=(User) session.getAttribute("user");
+%>
 <form name="form" id="form" method="post" action="update">
     <div class="word">New User Registration!</div>
-    <input type="text" placeholder="User" name="username" class="messagedata"><br/>
-    <input type="password" placeholder="password" name="password" class="messagedata"><br/>
-    <input type="email" placeholder="Email" name="email" class="messagedata"><br/>
+    <input type="text" placeholder="User" name="username" class="messagedata" value="<%=user.getUsername()%>"><br/>
+    <input type="password" placeholder="password" name="password" class="messagedata"value="<%=user.getPassword()%>"><br/>
+    <input type="email" placeholder="Email" name="email" class="messagedata" value="<%=user.getEmail()%>"><br/>
 
-    <div class="word">Gender<input type="radio" name="male" value="male " checked>Male
-        <input type="radio" name="male" value="female">Female</div>
+    <div class="word">Gender<input type="radio" name="male" value="male "<%=user.getGender().trim().equals("male")?"checked":""%>>Male
+        <input type="radio" name="male" value="female" <%=user.getGender().trim().equals("female")?"checked":""%>>Female</div>
     <input type="text" placeholder="Date of borth(yyyy-mm-dd)" name="birthday" class="messagedata"><br/>
     <input type="submit" value="Register" id="bt">
 </form>
-
 <script>
     document.getElementById("form").style.marginLeft="50px";
     //按钮
