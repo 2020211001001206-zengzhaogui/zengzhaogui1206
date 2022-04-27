@@ -7,12 +7,12 @@ import javax.servlet.annotation.*;
 import java.io.IOException;
 import java.io.PrintWriter;
 
-@WebServlet(name = "SearchServlet", value = "/SearchServlet")
+@WebServlet(name = "SearchServlet", value = "/search")
 public class SearchServlet extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 //        request.setCharacterEncoding("UTF-8");
-        String choose=request.getParameter("choose");
+        String choose=request.getParameter("search");
         if(choose.equals("qq")){
             response.sendRedirect("https://www.qq.com/");
         }else if(choose.equals("baidu")){

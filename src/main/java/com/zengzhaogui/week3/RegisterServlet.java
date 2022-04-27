@@ -8,6 +8,7 @@ import java.io.PrintWriter;
 public class RegisterServlet extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+        request.getRequestDispatcher("WEB-INF/views/register.jsp").forward(request,response);
 
     }
 
@@ -17,8 +18,8 @@ public class RegisterServlet extends HttpServlet {
         String password=request.getParameter("password");
 
         String email=request.getParameter("email");
-        String male=request.getParameter("male");
-        String birthday=request.getParameter("birthday");
+        String male=request.getParameter("gender");
+        String birthday=request.getParameter("birthDate");
 
 
         PrintWriter writer=response.getWriter();
