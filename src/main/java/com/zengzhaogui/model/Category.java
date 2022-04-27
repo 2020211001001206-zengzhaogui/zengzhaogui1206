@@ -71,10 +71,10 @@ public class Category {
             ResultSet resultSet=statement.executeQuery(sql);
             while (resultSet.next()){
                 Category c=new Category();
-                c.setCategoryId(resultSet.getInt("CategoryId"));
-                c.setCategoryName(resultSet.getString("CategoryName"));
-                c.setDescription(resultSet.getString("Description"));
-                c.setActive(resultSet.getBoolean("Active"));
+                c.setCategoryId(resultSet.getInt("categoryId"));
+                c.setCategoryName(resultSet.getString("categoryName"));
+                c.setDescription(resultSet.getString("description"));
+                c.setActive(resultSet.getBoolean("active"));
                 list.add(c);
             }
 

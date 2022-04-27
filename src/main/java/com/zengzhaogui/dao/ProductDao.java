@@ -77,6 +77,7 @@ public class ProductDao implements  IProductDao{
             Statement statement=con.createStatement();
             ResultSet resultSet=statement.executeQuery(sql);
             while (resultSet.next()){
+                product.setProductId(resultSet.getInt("productId"));
                 product.setProductName(resultSet.getString("ProductName"));
                 product.setProductDescription(resultSet.getString("ProductDescription"));
                 product.setPrice(resultSet.getDouble("price"));
@@ -142,15 +143,16 @@ public class ProductDao implements  IProductDao{
             ResultSet resultSet=statement.executeQuery(sql);
             while (resultSet.next()){
                 Product product=new Product();
+                product.setProductId(resultSet.getInt("ProductId"));
                 product.setProductName(resultSet.getString("ProductName"));
                 product.setProductDescription(resultSet.getString("ProductDescription"));
                 product.setPrice(resultSet.getDouble("price"));
                 product.setCategoryId(resultSet.getInt("CategoryId"));
-                product.setPicture(resultSet.getBinaryStream("picture"));
+               // product.setPicture(resultSet.getBinaryStream("picture"));
                 list.add(product);
             }
         }catch (Exception e){
-            System.out.println("");
+            System.out.println("222");
         }
         return list;
     }
@@ -198,5 +200,18 @@ public class ProductDao implements  IProductDao{
         }
 
         return list;
+    }
+
+    public byte[] getPictureById(Integer productId,Connection con) throws  SQLException{
+        byte[] imgBytes=null;
+        String sql="select picture from product where productId=?";
+        PreparedStatement pt=con.prepareStatement(sql);
+        pt.setInt(1,productId);
+        ResultSet rs=pt.executeQuery();
+        while (rs.next()){
+            Blob blob= rs.getBlob("picture");
+            imgBytes=blob.getBytes(1,(int) blob.length());
+        }
+        return imgBytes;
     }
 }
