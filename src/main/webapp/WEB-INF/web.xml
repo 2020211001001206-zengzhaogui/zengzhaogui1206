@@ -73,4 +73,14 @@
     <welcome-file-list>
         <welcome-file>home</welcome-file>
     </welcome-file-list>
+
+    <!--lab2-->
+    <filter>
+        <filter-name>zengzhaoguiFilter</filter-name>
+        <filter-class>com.zengzhaogui.Lab2.zengzhaoguiFilter</filter-class>
+    </filter>
+    <filter-mapping>
+        <filter-name>zengzhaoguiFilter</filter-name>
+        <url-pattern>/lab2/welcome.jsp</url-pattern>
+    </filter-mapping>
 </web-app>
