@@ -22,6 +22,7 @@ public class LifeCycleServlet extends HttpServlet {
         PrintWriter out=response.getWriter();
         out.println("Since loading,this servlet has been accessed "+(++i)+" times");
         out.println("2020211001001206-zengzhaohui");
+
     }
 
     @Override

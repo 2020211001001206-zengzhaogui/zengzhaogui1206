@@ -7,8 +7,8 @@
 --%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <form method="post" action="MyDearJsp.jsp">
-    <h1>2020211001001206-zengzhaogui</h1>
-    <h1>I am in MyJsp.jsp</h1>
+    <h6>2020211001001206-zengzhaogui</h6>
+    <h6>I am in MyJsp.jsp</h6>
     name:<input type="text" name="name"><br>
     MyClass:<input type="text" name="myclass"><br>
     ID:<input type="text" name="id"><br>

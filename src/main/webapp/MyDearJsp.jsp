@@ -6,13 +6,13 @@
   To change this template use File | Settings | File Templates.
 --%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
-<h1>Use java code</h1>
+<h6>Use java code</h6>
 name:<%=request.getParameter("name")%><br>
 submit:<%=request.getParameter("submitButton")%><br>
 MyClass:<%=request.getParameter("myclass")%><br>
 ID:<%=request.getParameter("id")%>
 <hr>
-<h1>Use EL</h1>
+<h6>Use EL</h6>
 name:${param.name}<br>
 submit:${param.submitButton}<br>
 MyClass:${param.myclass}<br>
