@@ -18,7 +18,7 @@
     Password : <input type="password" name="password"><br>
     <input type="submit" value="Login"/>
     <hr>
-    <h4>2020211001001206-zengzhaogui</h4>
+    <h4>2020211001001206--zengzhaogui</h4>
 </form>
 
 </body>
